@@ -24,7 +24,7 @@ rdch = np.random.randint(0,BANDIT_NUM, RANGE_NUM)
 scar = np.random.normal(0, STD_DIFF, RANGE_NUM)
 
 for step in range(0, RANGE_NUM):
-    if (poi[step] < eps or step == 0) and step<500:
+    if (poi[step] < eps or step == 0):
         # choose a new one
         rd = rdch[step]
         answer = bandit[rd] + scar[step]
@@ -44,6 +44,7 @@ for step in range(0, RANGE_NUM):
         print("#{step} choose {index}, reward {reward}\n".format(step = step, index= maxindex, reward = answer))
 
 print("\n\nTotal reward:{rewards}\n\n".format(rewards = reward))
+
 for _ in range(0,BANDIT_NUM):
     print("bandit {index} ex {exp}".format(index = _, exp = q[_]))
 
