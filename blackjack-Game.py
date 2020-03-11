@@ -34,7 +34,8 @@ def draw_card():
     if newcard == 0:
         print("Draw A")
         drawed_cards.append("A")
-        a += 1
+        point += 1
+        a = 1
     else:
         print("Draw {}".format(newcard))
         drawed_cards.append(str(newcard))
@@ -43,11 +44,12 @@ def draw_card():
 
 def banker_draw_card():
     global banker_point, ba
-    newcard = cards[random.randint(1, cards.size - 1)]
+    newcard = cards[random.randint(0, cards.size - 1)]
     if newcard == 0:
         print("Banker draw A")
         banker_cards.append("A")
-        ba += 1
+        banker_point += 1
+        ba = 1
     else:
         print("Banker draw {}".format(newcard))
         banker_cards.append(str(newcard))
@@ -63,16 +65,9 @@ def is_terminal():
 
 
 def get_max_score(pt, pa):
-    score = pt
-    res = pa
-    while res >= 1:
-        if pt + res + 10 <= 21:
-            res -= 1
-            score += 11
-        else:
-            res -= 1
-            score += 1
-    return score
+    if(pa==1 and pt <=11):
+        return pt + 10
+    return pt
 
 
 # Game Start
@@ -97,7 +92,7 @@ while 1:
     else:
         break
 
-print("\n\nEnd:\n")
+print("\n\nEnd:")
 print("Banker's Cards:{}".format(banker_cards))
 print("My cards: {}\n".format(drawed_cards))
 
